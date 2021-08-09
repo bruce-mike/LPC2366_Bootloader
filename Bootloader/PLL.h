@@ -36,4 +36,3 @@
                              // In this case 72000000/(CCLKSEL + 1) = 36000000
 
 void PLL_CONFIG(void);
-void PLL_CLOCK_SETUP(ePLATFORM_TYPE ePlatformType);

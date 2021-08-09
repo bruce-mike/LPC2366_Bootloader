@@ -12,7 +12,7 @@
 #ifndef __IRQ_H 
 #define __IRQ_H
 
-#include "sharedinterface.h"
+
 
 #define I_Bit			0x80
 #define F_Bit			0x40

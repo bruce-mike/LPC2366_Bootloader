@@ -2,9 +2,7 @@
 #define MISC_HARDWARE_H
 
 #include "shareddefs.h"
-#include "PCUDefs.h"
-#include "queue.h"
-#include "errorinput.h"
+
 
 #define OFF 0
 #define ON 1

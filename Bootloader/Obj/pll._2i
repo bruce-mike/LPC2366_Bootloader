@@ -1,5 +1,0 @@
--c --cpu ARM7TDMI -g -O2 --apcs=interwork -IC:\Keil\ARM\INC\Phillips -I..\SharedCode
--I C:\Keil_v5\ARM\RV31\INC
--I C:\Keil_v5\ARM\CMSIS\Include
--I C:\Keil_v5\ARM\Inc\Philips
--o .\obj\pll.o --omf_browse .\obj\pll.crf --depend .\obj\pll.d --feedback ".\Obj\Bootloader.fed" "PLL.c"

@@ -1,8 +1,6 @@
 #include "lpc23xx.h"
 #include "shareddefs.h"
-#include "sharedinterface.h"
 #include "PLL.h"
-#include "queue.h"
 
 
 
@@ -74,90 +72,3 @@ void PLL_CONFIG(void)
 		//************************************	
 }
 
-void PLL_CLOCK_SETUP(ePLATFORM_TYPE ePlatformType)
-{
-// CPU DIVIDER = 4
-// PCLK = CCLK/4
-// PLL MULT = 12
-// PLL_CONFIG();
-// PLL_CONFIG() NOT CALLED --> PLL NOT SET UP, NOT CONFIGURED.  DEFAULT CLK SOURCE = IRC (4MHz)
-// DEFAULT CLOCK SOURCE FOR PERIPHS IS CCLK/4
-// set periph clk = cclk
-	switch(ePlatformType)
-	{
-		case ePLATFORM_TYPE_ARROW_BOARD:
-			PCLKSEL0 = (CCLK_OVER_1 << PCLK_UART0) | // DEBUG
-								 (CCLK_OVER_1 << PCLK_UART1) ; // RFD
-
-			PCLKSEL1 = (CCLK_OVER_1 << PCLK_UART2); // 485
-
-			break;
-		
-		case ePLATFORM_TYPE_HANDHELD:
-			PCLKSEL0 = (CCLK_OVER_1 << PCLK_UART0); // DEBUG
-
-			PCLKSEL1 = (CCLK_OVER_1 << PCLK_UART2) | // 485
-								 (CCLK_OVER_1 << PCLK_UART3) ; // RFD
-			break;
-		
-		case ePLATFORM_TYPE_PCU:
-			PCLKSEL0 = (CCLK_OVER_1 << PCLK_UART0) | // DEBUG
-								 (CCLK_OVER_1 << PCLK_UART1) ; // RFD
-
-			PCLKSEL1 = (CCLK_OVER_1 << PCLK_UART2)| // 485
-								 (CCLK_OVER_1 << PCLK_UART3); // PCU
-			break;
-		
-		default:
-			break;
-	}
-
-	/////
-	// configure the PLL
-	/////
-	PLL_CONFIG();
-	
-	/////
-	// ENERGIZE PERIPHERALS
-	/////
-	switch(ePlatformType)
-	{
-		case ePLATFORM_TYPE_ARROW_BOARD:
-			PCONP = (1 << PCUART0) |   	// debug uart
-							(1 << PCUART2) |		// 485
-							(1 << PCUART1) |		// rfd
-							(1 << PCAD   ) |		// ADC
-							(1 << PCTIM0 ) |		// timer
-							(1 << PCI2C0 ) |		// timer
-							(1 << PCSSP1 ) ;		// SSP1
-			break;
-		
-		case ePLATFORM_TYPE_HANDHELD:
-			PCONP = (1 << PCUART0) |   	// debug uart
-							(1 << PCUART2) |		// 485
-							(1 << PCUART3) |		// rfd
-							(1 << PCAD   ) |		// ADC
-							(1 << PCTIM0 ) |		// timer
-							(1 << PCPWM1 ) |		// pwm
-							(1 << PCSSP0 ) ;		// SSP0			
-			break;
-		
-		case ePLATFORM_TYPE_PCU:
-			PCONP = (1 << PCUART0) |   	// debug uart
-							(1 << PCUART2) |		// 485
-							(1 << PCUART1) |		// rfd
-							(1 << PCUART3) |		// rfd
-							(1 << PCAD   ) |		// ADC
-							(1 << PCTIM0 ) |		// timer
-							(1 << PCI2C0 ) |		// timer
-							(1 << PCSSP1 ) ;		// SSP1
-			break;
-		
-		default:
-			break;
-	}
-
-
-
-
-}

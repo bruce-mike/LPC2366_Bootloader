@@ -3,7 +3,7 @@
 
 
 
-#define SOFTWARE_VERSION "1.00.00"
+#define SOFTWARE_VERSION    0x10000L;   // 1.00.00
 
 
 

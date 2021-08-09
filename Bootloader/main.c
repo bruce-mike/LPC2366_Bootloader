@@ -3,25 +3,20 @@
 #include <stdio.h>
 #include <string.h>
 #include "shareddefs.h"
-#include "sharedinterface.h"
-#include "queue.h"
-#include "serial.h"
-#include "pwm.h"
-#include "mischardware.h"
-#include "actuator.h"
-#include "display.h"
-#include "power.h"
 #include "pll.h"
 #include "irq.h"
-#include "spiFlash.h"
 #include "watchdog.h"
-#include "PCUDefs.h"
 #include "softwareVersion.h"
 #include "iap.h"
 #include "pll.h"
 
 
-//#define DEBUG_IN_PROGRESS
+const uint32_t bootLoaderSoftwareVersion __attribute__((at(0x02ffc))) = SOFTWARE_VERSION;  
+
+
+
+// Watch Dog Pet - Port 1.4
+#define uP_WD_KICK		4		
 
 #define WATCHDOG_FEEDING_TIME_MS    1000
 #define LAMPS_ENABLE_TIME_MS        10000
