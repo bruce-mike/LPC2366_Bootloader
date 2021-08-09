@@ -1,0 +1,5 @@
+-c --cpu ARM7TDMI -g -O2 --apcs=interwork -IC:\Keil\ARM\INC\Phillips -I..\SharedCode
+-I C:\Keil_v5\ARM\RV31\INC
+-I C:\Keil_v5\ARM\CMSIS\Include
+-I C:\Keil_v5\ARM\Inc\Philips
+-o .\obj\watchdog.o --omf_browse .\obj\watchdog.crf --depend .\obj\watchdog.d --feedback ".\Obj\Bootloader.fed" "watchdog.c"
